@@ -1,3 +1,4 @@
+cd ..
 mkdir documents
 cd documents
 mkdir overflow
