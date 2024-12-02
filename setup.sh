@@ -19,5 +19,6 @@ sudo systemctl reload nginx
 sudo python3 deploy-sql.py
 cd ..
 docker cp ../backup.bak sql-server:/var/opt/mssql/backup.bak
+docker cp restore.sql sql-server:/var/opt/mssql/restore.sql
 docker exec -it sql-server /opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P $(<../documents/overflow/sql_password.txt) -i /var/opt/mssql/restore.sql
 git clone https://github.com/2412rock/service-checker
