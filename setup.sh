@@ -12,3 +12,12 @@ curl -s https://install.zerotier.com | sudo bash
 sudo apt install zerotier-one
 sudo systemctl enable zerotier-one
 sudo systemctl start zerotier-one
+cp reverse-proxy.conf /etc/nginx/sites-available/
+sudo ln -s /etc/nginx/sites-available/reverse-proxy.conf /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx
+sudo python3 deploy-sql.py
+cd ..
+docker cp OverflowDB.bak sql-server:/var/opt/mssql/backup.bak
+docker exec -it sql-server /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P $(</documents/overflow/password.txt) -i /var/opt/mssql/restore.sql
+git clone https://github.com/2412rock/service-checker
