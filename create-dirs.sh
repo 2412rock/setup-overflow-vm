@@ -1,5 +1,5 @@
 mkdir documents
 cd documents
 mkdir overflow
-cd ../..
+cd ..
 mkdir certs

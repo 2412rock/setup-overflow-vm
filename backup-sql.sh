@@ -28,3 +28,14 @@ else
     echo "Failed to copy the backup file to the host machine!"
     exit 1
 fi
+
+echo "Changing file permissions to -rw-r--r--..."
+chmod 644 $HOST_BACKUP_PATH
+
+# Check if the chmod was successful
+if [ $? -eq 0 ]; then
+    echo "File permissions changed successfully."
+else
+    echo "Failed to change file permissions."
+    exit 1
+fi
