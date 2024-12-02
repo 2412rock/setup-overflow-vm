@@ -7,7 +7,7 @@ HOST_BACKUP_PATH="backup.bak"
 
 # Step 1: Back up the database inside the Docker container
 echo "Starting database backup..."
-docker exec -it $CONTAINER_NAME /opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P $(<../documents/overflow/password.txt)  -Q "BACKUP DATABASE OverflowDB TO DISK = N'$BACKUP_PATH'"
+docker exec -it $CONTAINER_NAME /opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P $(<../documents/overflow/sql_password.txt.txt)  -Q "BACKUP DATABASE OverflowDB TO DISK = N'$BACKUP_PATH'"
 
 # Check if the backup was successful
 if [ $? -eq 0 ]; then
