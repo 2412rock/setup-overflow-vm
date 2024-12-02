@@ -1,5 +1,5 @@
 sudo apt update
-sudo apt install nginx
+sudo apt install nginx -y
 sudo systemctl enable nginx
 sudo apt update
 sudo apt install -y ca-certificates curl gnupg lsb-release
@@ -18,6 +18,6 @@ sudo nginx -t
 sudo systemctl reload nginx
 sudo python3 deploy-sql.py
 cd ..
-docker cp backup.bak sql-server:/var/opt/mssql/backup.bak
-docker exec -it sql-server /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P $(</documents/overflow/password.txt) -i /var/opt/mssql/restore.sql
+docker cp ../backup.bak sql-server:/var/opt/mssql/backup.bak
+docker exec -it sql-server /opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P $(<../documents/overflow/sql_password.txt) -i /var/opt/mssql/restore.sql
 git clone https://github.com/2412rock/service-checker
